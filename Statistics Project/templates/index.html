@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="{{url_for('static',filename='assets/glucometer.png ')}}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/style.css')}}"
+    />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diabetes Prediction</title>
+
+  </head>
+
+  <body>
+    <nav>
+      <marquee scrollamount="15"
+        ><label class="navText">Diabetes Prediction by Team 20</label></marquee
+      >
+    </nav>
+    <div class="content">
+      <p class="info">
+        This website uses random forest classifier to predict if you have
+        diabetes or not.<br />
+        Please fill the below fields
+      </p>
+
+      <div style="float: right">
+        {% if not empty %}
+          {% if approved %}
+            <h1 class="result_text">Diabetes</h1>
+          {%else%}
+            <h3 class="result_text result_text_no">No Diabetes</h3>
+          {% endif %}
+        {% endif %}
+        
+        
+        <img class="result_icon" src="{{url_for('static',filename='assets/glucosemeter.png')}}" />
+      </div>
+      <form action = "http://127.0.0.1:5000/predict" method = "POST">
+        <div style="float: left">
+          <ul style="display: inline">
+            <li>
+              <input
+                class="inputs"
+                min="0"
+                name="Cholesterol"
+                placeholder="Cholesterol"
+              />
+            </li>
+  
+            <li>
+              <input class="inputs"   min="0" placeholder="Glucose" name="Glucose" />
+            </li>
+  
+            <li>
+              <input
+                class="inputs"
+                
+                min="0"
+                placeholder="hdl_chol"
+                name="hdl_chol"
+              />
+            </li>
+  
+            <li>
+              <input
+                class="inputs"
+                
+                min="0"
+                placeholder="Chol_hdl_ratio"
+                name="Chol_hdl_ratio"
+              />
+            </li>
+  
+            <li>
+              <input class="inputs"   min="0" placeholder="Age" name="Age" />
+            </li>
+  
+            <li>
+              <input class="inputs"   min="0" placeholder="Height" name="Height" />
+            </li>
+            <li>
+              <input class="inputs"   min="0" placeholder="Weight" name="Weight" />
+            </li>
+          </ul>
+        </div>
+        <div style="clear: auto">
+          <ul>
+            <li>
+              <input class="inputs"   min="0" placeholder="bmi" name="bmi" />
+            </li>
+  
+            <li>
+              <input
+                class="inputs"
+                
+                min="0"
+                placeholder="Systolic_bp"
+                name="Systolic_bp"
+              />
+            </li>
+            <li>
+              <input
+                class="inputs"
+                
+                min="0"
+                placeholder="Diastolic_bp"
+                name="Diastolic_bp"
+              />
+            </li>
+  
+            <li>
+              <input class="inputs"   min="0" placeholder="Waist" name="Waist" />
+            </li>
+  
+            <li>
+              <input class="inputs"   min="0" placeholder="Hip" name="Hip" />
+            </li>
+  
+            <li>
+              <input
+                class="inputs"
+                
+                min="0"
+                placeholder="Waist_Hip_ratio"
+                name="Waist_Hip_ratio"
+              />
+            </li>
+  
+            <li>
+              <label style="font-size: 40px; margin-right: 35px; color: white"
+                >Gender</label
+              >
+              <select
+                class="inputs"
+                name="Gender"
+                style="padding-top: 5px; padding-bottom: 5px"
+              >
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+              </select>
+            </li>
+          </ul>
+          <div>
+            <button type="submit" class="predict_btn">
+              <img src=" {{url_for('static',filename='assets/diabetes.png')}}" style="width: 50px" /> Predict
+            </button>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+  </body>
+</html>
